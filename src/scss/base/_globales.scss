@@ -1,6 +1,7 @@
 html{
     font-size: 62.5%;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *, *:before, *:after {
@@ -10,6 +11,10 @@ html{
 body{
     font-family: $fuentePrincipal;
     font-size: 1.6rem;
+
+    &.fijar-body{
+        overflow: hidden;
+    }
 }
 
 p{
