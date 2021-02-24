@@ -8,6 +8,8 @@ const concat = require('gulp-concat');
 // utilidades CSS:
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
+const cssnano = require('cssnano');
+const sourcemaps = require('gulp-sourcemaps');
 
 const paths = {
     imagenes: 'src/img/**/*',
@@ -18,9 +20,10 @@ const paths = {
 // funcion que compila SASS
 function css(){
     return src(paths.scss)
-    .pipe( sass({
-        outputStyle: 'expanded'  //expanded permite obtener una mejor estructura en el archivo css tras compilar
-    }) )
+    .pipe( sourcemaps.init())
+    .pipe( sass() )
+    .pipe( postcss( [autoprefixer(), cssnano() ] ))
+    .pipe( sourcemaps.write('.'))
     .pipe( dest('./build/css'))
 }
 
